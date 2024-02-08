@@ -22,6 +22,20 @@
     my-card{
       margin: 16px;
     }
+    .cardbtn{
+      margin-right: 6px;
+      margin-top: 6px;
+      margin-left: 12px;
+      background: #5C6089;
+      border-radius: 100px;
+      padding: 6px 12px;
+      border: solid 2px black;
+    }
+    .cardbtn:hover {
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+    }
   </style>
   <title>polaris-chip / my-card</title>
 </head>
@@ -35,38 +49,48 @@
   <polaris-chip title="Grants and donations"></polaris-chip>
   <!-- this is going to take the tag and change the title -->
 
+
+
   <h1>my-card</h1>
-  <my-card
+  <button class="cardbtn" id="duplicate">Duplicate Last Card</button>
+  <button class="cardbtn" id="changetitle">Change Title</button>
+  <button class="cardbtn" id="changeimage">Change Image </button>
+  <button class="cardbtn" id="changetext">Change Text </button>
+  <button class="cardbtn" id="changebg">Change Color</button>
+  <button class="cardbtn" id="delete">Delete Last Card</button>
+
+  <div class="cardlst">
+    <my-card
     title="Rafeal Leao"
     description="Portuguese Soccer player for AC Milan in Italy"
     imageUrl="https://i2-prod.football.london/incoming/article26365483.ece/ALTERNATES/s1200c/3_GettyImages-1470068423.jpg"
     link="https://hax.psu.edu"
     ></my-card>
-  <my-card
+    <my-card
     title="Michael Olise"
     description="English born Soccer player for Crystal Palace in England"
     imageUrl="https://static.standard.co.uk/2023/08/16/07/newFile-5.jpg?width=1200&height=1200&fit=crop"
     link="https://hax.psu.edu"
     ></my-card>
-  <my-card
+    <my-card
     title="Manuel Akanji"
     description="Swiss Defender playing for Manchester City in England"
     imageUrl="https://i2-prod.football.london/incoming/article27957556.ece/ALTERNATES/s1200c/0_Akanji.jpg"
     link="https://hax.psu.edu"
     ></my-card>
-  <my-card
+    <my-card
     title="Leroy Sane"
     description="German Winger playing for Bayern Munich in Germany"
     imageUrl="https://pbs.twimg.com/media/Ens12MBWEAAarZ0.jpg"
     link="https://hax.psu.edu"
     ></my-card>
-  <my-card
+    <my-card
     title="Declan Rice"
     description="English midfielder playing for Arsenal in Endland"
     imageUrl="https://i2-prod.football.london/incoming/article27354268.ece/ALTERNATES/s1200c/0_Declan-Rice.jpg"
     link="https://hax.psu.edu"
     ></my-card>
-    
+</div>
 
 
   <!-- this is what is bringing in the definition for this tag -->

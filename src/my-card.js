@@ -13,7 +13,7 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "My card";
+    this.title ="My card";
     this.description="Default Description";
     this.imageUrl="https://via.placeholder.com/300";
     this.link="#"
@@ -29,6 +29,7 @@ export class MyCard extends LitElement {
         margin:16px;
         width:300px;
       }
+
       .header{
         background-color:black;
         color:red;
@@ -49,6 +50,11 @@ export class MyCard extends LitElement {
       .chip:hover{
         background-color: red;
       }
+      .change-color {
+        background-color: skyblue;
+        color: black;
+      }
+      
    `;
   }
   render() {
@@ -73,3 +79,60 @@ export class MyCard extends LitElement {
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
+
+
+document.querySelector('#duplicate').addEventListener('click', function(event) {
+  const cardList = document.querySelector('.cardlst');
+  const myCardElements = cardList.querySelectorAll('my-card');
+
+  if (myCardElements.length < 10) {
+    const lastCard = myCardElements[myCardElements.length - 1];
+    const newCard = document.createElement('my-card');
+    
+    // Copy properties from the last card to the new card
+    newCard.title = lastCard.title;
+    newCard.imageUrl = lastCard.imageUrl;
+    newCard.description = lastCard.description;
+    newCard.link = lastCard.link;
+
+    cardList.appendChild(newCard);
+  }
+});
+
+document.querySelector('#changetitle').addEventListener('click', function(e) {
+  const firstCard = document.querySelector('.cardlst my-card');
+  if (firstCard) {
+    firstCard.title = "Soccer!!";
+  }
+});
+document.querySelector('#changetext').addEventListener('click', function(e) {
+  const firstCard = document.querySelector('.cardlst my-card');
+  if (firstCard) {
+    firstCard.description = "The beautiful game hosted in every country";
+  }
+});
+
+document.querySelector('#changeimage').addEventListener('click', function(e) {
+  const firstCard = document.querySelector('.cardlst my-card');
+  if (firstCard) {
+    firstCard.imageUrl = "https://i.guim.co.uk/img/media/e5ecca89ea10fe9e02d82f14974ddee6e9abfdec/0_507_8000_4801/master/8000.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=e962e62f0cb3e7524c2870110483a9fc";
+  }
+});
+
+document.querySelector('#changebg').addEventListener('click', function(e) {
+  var cards = document.querySelectorAll('.cardlst my-card');
+  cards.forEach(function(card) {
+    card.shadowRoot.querySelector('div').classList.toggle('change-color');
+  });
+  
+});
+
+
+document.querySelector('#delete').addEventListener('click', function(e) {
+  const cardList = document.querySelector('.cardlst');
+  const myCardElements = cardList.querySelectorAll('my-card');
+  if (myCardElements.length > 1) {
+    const lastCard = myCardElements[myCardElements.length - 1];
+    lastCard.remove();
+  }
+});
