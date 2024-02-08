@@ -17,6 +17,7 @@ export class MyCard extends LitElement {
     this.description="Default Description";
     this.imageUrl="https://via.placeholder.com/300";
     this.link="#"
+    this.fancy = false;
   }
 
   static get styles() {
@@ -28,6 +29,13 @@ export class MyCard extends LitElement {
         overflow:hidden;
         margin:16px;
         width:300px;
+        height:400px
+      }
+      :host([fancy]) {
+        display: inline-flex;
+        background-color: pink;
+        border: 2px solid fuchsia;
+        box-shadow: 10px 5px 5px red;
       }
 
       .header{
@@ -46,6 +54,8 @@ export class MyCard extends LitElement {
         padding: 6px 20px;
         border-radius: 10px;
         display: inline-block;
+        margin-top:10px;
+        
       }
       .chip:hover{
         background-color: red;
@@ -54,15 +64,45 @@ export class MyCard extends LitElement {
         background-color: skyblue;
         color: black;
       }
-      
+      details summary {
+        text-align: left;
+        font-size: 20px;
+        padding: 8px 0;
+      }
+
+      details[open] summary {
+        font-weight: bold;
+      }
+  
+      details div {
+        border: 2px solid black;
+        text-align: left;
+        padding: 8px;
+        height: 70px;
+        overflow: auto;
+      }
    `;
+  }
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
   }
   render() {
     return html`
       <div class="header">${this.title}</div>
       <div class="content">
         <img src="${this.imageUrl}" alt="${this.title}" style="width: 100%;">
-        <p>${this.description}</p>
+        <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+          <summary>Description</summary>
+          <div>
+            <slot>${this.description}</slot>
+          </div>
+        </details>
         <a href="${this.link}" target="_blank" class="chip">Details</a>
       </div>
       `;
@@ -74,6 +114,7 @@ export class MyCard extends LitElement {
       description: { type: String },
       imageUrl: { type: String },
       link: { type: String },
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
@@ -102,13 +143,7 @@ document.querySelector('#duplicate').addEventListener('click', function(event) {
 document.querySelector('#changetitle').addEventListener('click', function(e) {
   const firstCard = document.querySelector('.cardlst my-card');
   if (firstCard) {
-    firstCard.title = "Soccer!!";
-  }
-});
-document.querySelector('#changetext').addEventListener('click', function(e) {
-  const firstCard = document.querySelector('.cardlst my-card');
-  if (firstCard) {
-    firstCard.description = "The beautiful game hosted in every country";
+    firstCard.title = "Soccer";
   }
 });
 
