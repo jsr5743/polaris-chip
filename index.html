@@ -23,6 +23,10 @@
     my-card{
       margin: 16px;
     }
+    counter-app{
+      margin:16px;
+      display:inline-flex;
+    }
     .cardbtn{
       margin-right: 6px;
       margin-top: 6px;
@@ -38,7 +42,7 @@
       color: #fff;
     }
   </style>
-  <title>polaris-chip / my-card</title>
+  <title>polaris-chip / my-card / counter-app</title>
 </head>
 
 <body>
@@ -99,12 +103,18 @@
     >
     <slot> English midfielder playing for <strong>Arsenal</strong> in England</slot>
     </my-card>
-</div>
-
+  </div>
+  <h1>counter-app</h1>
+  <counter-app value="0" min="0" max="50">
+  </counter-app>
+  <confetti-container id="confetti">
+    <counter-app value="16" min="10" max="25" class="second-counter"></counter-app>
+  </confetti-container>
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+  <script type="module" src="./src/counter-app.js"></script>
 </body>
 
 </html>

@@ -97,8 +97,8 @@ export class MyCard extends LitElement {
     return html`
       <div class="header">${this.title}</div>
       <div class="content">
-        <!-- <img src="${this.imageUrl}" alt="${this.title}" style="width: 100%;"> -->
-        <meme-maker alt="Apple in the sky" image-url="https://cdn-0001.qstv.on.epicgames.com/vParzWHKcRvhhVusVx/image/landscape_comp.jpeg" top-text="Large" bottom-text="apple"></meme-maker>
+        <img src="${this.imageUrl}" alt="${this.title}" style="width: 100%;">
+        <!-- <meme-maker alt="Apple in the sky" image-url="https://cdn-0001.qstv.on.epicgames.com/vParzWHKcRvhhVusVx/image/landscape_comp.jpeg" top-text="Large" bottom-text="apple"></meme-maker> -->
         <details ?open="${this.fancy}" @toggle="${this.openChanged}">
           <summary>Description</summary>
           <div>
