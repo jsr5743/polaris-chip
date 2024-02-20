@@ -38,7 +38,7 @@ export class Counter extends LitElement {
         padding: 20px;
         text-align:center;
         font-size:20px;
-        margin:20px;
+        margin:20px auto;
       }
       .counter-num{
         border:16px;
@@ -84,36 +84,18 @@ export class Counter extends LitElement {
 increase(){
   if (this.max === undefined || this.value < this.max) {
     this.value += 1;
-    this.updateNumColor();
   }
 
 }
 decrease(){
   if (this.min === undefined || this.value > this.min) {
     this.value -= 1;
-    this.updateNumColor();
-  }
-}
-updateNumColor(){
-  if (this.classList.contains('second-counter')) {
-    const counterNumber = this.shadowRoot.querySelector('.counter-num');
-    if (counterNumber) {
-      if (this.value === 18 || this.value === 21) {
-        counterNumber.style.color = 'green';
-      } 
-      else if(this.value === this.max || this.value === this.min) {
-        counterNumber.style.color = 'red';
-      }
-      else {
-        counterNumber.style.color = 'white';
-      }
-    }
   }
 }
 
 updated(changedProperties) {
   super.updated(changedProperties);
-  if (changedProperties.has('counter-num')) {
+  if (changedProperties.has('value')) {
     if (this.value === 21) {
       this.makeItRain();
     }
@@ -130,12 +112,21 @@ makeItRain() {
   );
 }
   render() {
+    var color = "white"
+    if(this.value == this.max) color = "green";
+    else if (this.value == this.min) color = "red";
+    else if (this.value == 18) color = "purple";
+    else if (this.value == 21) color = "yellow";
+
+
     return html`
-      <div class="box">
-      <span class="counter-num">${this.value}</span>
-        <button class="addbtn" @click="${this.increase}" ?disabled="${this.max === this.value}">+</button>
-        <button class="decbtn" @click="${this.decrease}" ?disabled="${this.min === this.value}">-</button>
-      </div>
+      <confetti-container id="confetti">
+        <div class="box">
+        <span class="counter-num" style="color: ${color}">${this.value}</span>
+          <button class="addbtn" @click="${this.increase}" ?disabled="${this.max === this.value}">+</button>
+          <button class="decbtn" @click="${this.decrease}" ?disabled="${this.min === this.value}">-</button>
+        </div>
+      </confetti-container>
     `;
   }
 
