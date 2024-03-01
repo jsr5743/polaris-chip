@@ -49,6 +49,20 @@
 </head>
 
 <body>
+  <h1>campus-alert</h1>
+  <campus-alert status="Notice" description="somehting" date="02-27-2024" sticky
+  >
+  <slot><strong>Notice!</strong> look </slot>
+  </campus-alert>
+  <campus-alert status="Warning" description="warn" date="02-27-2024" 
+  >
+  <slot>you have been <strong>warned</strong>  </slot>
+  </campus-alert>
+  <campus-alert status="Alert" description="alerted" date="02-27-2024" 
+  >
+  <slot><strong>GET OUT</strong> !! </slot>
+  </campus-alert>
+ 
   <h1>polaris-chip</h1>
   <!-- this is going to do whatever the tag's defaults are -->
   <polaris-chip title="News of Record"></polaris-chip>
@@ -112,17 +126,14 @@
   </counter-app>
     <counter-app value="16" min="10" max="25" class="second-counter"></counter-app>
 
-  <h1>campus-alert</h1>
-  <campus-alert status="Notice" description="somehting"  imageUrl="https://images.vexels.com/media/users/3/128917/isolated/preview/3fa111197f6aee0add60c05829d0f196-exclamation-point-icon.png" sticky
-  >
-  <slot> something <strong>went</strong> wrong </slot>
-  </campus-alert>
+
 
   <!-- this is what is bringing in the definition for this tag -->
+  <script type="module" src="./src/campus-alert.js"></script>
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
   <script type="module" src="./src/counter-app.js"></script>
-  <script type="module" src="./src/campus-alert.js"></script>
+  
 </body>
 
 </html>
