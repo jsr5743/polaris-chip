@@ -50,17 +50,21 @@
 
 <body>
   <h1>campus-alert</h1>
-  <campus-alert status="Notice" description="somehting" date="02-27-2024" sticky
+  <campus-alert status="Notice" description="somehting" date="03-10-2024" sticky
   >
-  <slot><strong>Notice!</strong> look </slot>
+  <slot>Be aware of <strong>something</strong></slot>
   </campus-alert>
-  <campus-alert status="Warning" description="warn" date="02-27-2024" 
+  <campus-alert status="Warning" description="warn" date="03-10-2024" 
   >
-  <slot>you have been <strong>warned</strong>  </slot>
+  <slot>Please <strong>BE</strong> careful </slot>
   </campus-alert>
-  <campus-alert status="Alert" description="alerted" date="02-27-2024" 
+  <campus-alert status="Alert" description="alerted" date="03-10-2024" 
   >
-  <slot><strong>GET OUT</strong> !! </slot>
+  <slot>ALERT please take <strong>shelter</strong></slot>
+  </campus-alert>
+  <campus-alert status="Custom" date="03-10-2024" 
+  >
+  <slot><strong>Custom colors </strong> !! </slot>
   </campus-alert>
  
   <h1>polaris-chip</h1>
