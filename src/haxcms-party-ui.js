@@ -18,6 +18,11 @@ export class HaxcmsPartyUI extends DDD {
       :host {
         display:inline-flex;
       }
+      .overallcontainer{
+        
+        background-color:black;
+       
+      }
       .party-ui-container {
         display:flex;
         flex-direction: column;
@@ -81,9 +86,11 @@ export class HaxcmsPartyUI extends DDD {
 
   render() {
     return html`
+    <div class="overallcontainer">
     <confetti-container id="confetti">
+    
     <div class="party-ui-container">
-      <input type="text" placeholder="Enter username (lowercase letters and numbers only)">
+      <input type="text" placeholder="Enter username">
       <button class="addbut" @click="${this.addUser}">Add User</button>
       
       <!-- <button class="rembut" @click="${this.removeUser}">Remove User</button> -->
@@ -102,7 +109,9 @@ export class HaxcmsPartyUI extends DDD {
         `)}
       </div>
     </div>
-    </confetti-container>
+ 
+  </confetti-container>
+  </div>
   `;
 }
 makeItRain() {
@@ -118,8 +127,16 @@ makeItRain() {
 addUser() {
   const userInput = this.shadowRoot.querySelector('.party-ui-container input').value.toLowerCase().replace(/[^a-z0-9]/g, '');
   if (userInput) {
+    // Create a new party member object
+    const newMember = {
+      username: userInput
+    };
+
+    // Update the partyMembers array
+    this.partyMembers = [...this.partyMembers, newMember];
+
+    // Update the visual representation 
     const rpgCharactersContainer = this.shadowRoot.querySelector('.party-ui-container .rpg-characters');
-    
     const characterContainer = document.createElement('div');
     characterContainer.classList.add('rpg-character');
     characterContainer.innerHTML = `
@@ -135,12 +152,17 @@ addUser() {
 }
 
 removeUser(username) {
+  // Update the partyMembers array (remove the specified member)
+  this.partyMembers = this.partyMembers.filter(member => member.username !== username);
+
+  // Update the visual representation 
   const rpgCharactersContainer = this.shadowRoot.querySelector('.party-ui-container .rpg-characters');
   const characterToRemove = [...rpgCharactersContainer.querySelectorAll('.rpg-character')].find(character => character.querySelector('p').innerText.trim() === username);
   if (characterToRemove) {
     rpgCharactersContainer.removeChild(characterToRemove);
   }
 }
+
 
 saveParty() {
   const rpgCharactersContainer = this.shadowRoot.querySelector('.party-ui-container .rpg-characters');
